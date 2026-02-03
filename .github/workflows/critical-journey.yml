@@ -11,6 +11,6 @@ jobs:
       - name: Run the test
         uses: foreai-co/cj-action@v1 
         with:
-          test_id: "12345" # Replace with your actual Test ID from the tool
+          test_id: "1b7bc431-c7da-4392-8d57-75296017f0f3" # Replace with your actual Test ID from the tool
           service_account_key: ${{ secrets.CRITICAL_JOURNEY_KEY }}
           website_url_override: "https://google.com" # Use Google as a dummy test site for now
