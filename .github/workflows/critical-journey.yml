@@ -1,16 +1,17 @@
-name: Automated Critical Journey Test
+name: Run CJ Github Action
 
-on:
-  push:
-    branches: [ "main" ]  # Runs every time you save code to the main branch
+on: [push]
 
 jobs:
-  test-my-site:
+  my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run the test
-        uses: foreai-co/cj-action@v1 
+      - name: Run Test
+        uses: foreai-co/cj-action@v1
+        id: run_cj
         with:
-          test_id: "1b7bc431-c7da-4392-8d57-75296017f0f3" # Replace with your actual Test ID from the tool
-          service_account_key: ${{ secrets.CRITICAL_JOURNEY_KEY }}
-          website_url_override: "https://google.com" # Use Google as a dummy test site for now
+          test_id: '1b7bc431-c7da-4392-8d57-75296017f0f3'
+          service_account_key: ${{ secrets.CRITICAL_JOURNEY_SERVICE_ACCOUNT_KEY }}
+      
+      - name: Print result
+        run: echo "${{ steps.run_cj.outputs.result }}"
