@@ -1,6 +1,10 @@
 name: Run CJ Github Action
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   my-job:
