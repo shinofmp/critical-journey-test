@@ -1,0 +1,26 @@
+name: Run CJ Github Action
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Test Suite
+        uses: foreai-co/cj-action@v1
+        id: run_cj
+        with:
+          test_suite_id: '3fb31841-848a-4487-bf0f-e4341d1ed662'
+          service_account_key: ${{ secrets.CRITICAL_JOURNEY_SERVICE_ACCOUNT_KEY }}
+          wait_timeout_seconds: 360  # = 6 minutes
+          # Override the website url using this optional field.
+          website_url_override: 'https://beta-dev.my-awesome.com/2'
+          # Override test parameters using this optional field. Provide valid json string.
+          params_override: '{ "param1" : "value1", "param2" : "value2" }'
+      
+      - name: Print result
+        run: echo "${{ steps.run_cj.outputs.result }}"
