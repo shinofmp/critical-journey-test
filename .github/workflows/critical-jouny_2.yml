@@ -19,3 +19,4 @@ jobs:
       
       - name: Print result
         run: echo "${{ steps.run_cj.outputs.result }}"
+        
